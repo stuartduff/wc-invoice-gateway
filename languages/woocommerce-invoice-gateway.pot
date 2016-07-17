@@ -1,0 +1,150 @@
+# Loco Gettext template
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Invoice Gateway\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: Sun Jul 17 2016 00:04:19 GMT+0100 (BST)\n"
+"POT-Revision-Date: Sun Jul 17 2016 23:10:18 GMT+0100 (BST)\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: ..\n"
+"X-Poedit-KeywordsList: _:1;gettext:1;dgettext:2;ngettext:1,2;dngettext:2,3;"
+"__:1;_e:1;_c:1;_n:1,2;_n_noop:1,2;_nc:1,2;__ngettext:1,2;__ngettext_noop:1,2;"
+"_x:1,2c;_ex:1,2c;_nx:1,2,4c;_nx_noop:1,2,3c;_n_js:1,2;_nx_js:1,2,3c;"
+"esc_attr__:1;esc_html__:1;esc_attr_e:1;esc_html_e:1;esc_attr_x:1,2c;"
+"esc_html_x:1,2c;comments_number_link:2,3;t:1;st:1;trans:1;transChoice:1,2\n"
+"X-Generator: Loco - https://localise.biz/"
+
+#: ../classes/class-woocommerce-invoice-gateway.php:25
+msgid "Invoice Payments"
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:26
+msgid ""
+"Allows invoice payments. Sends an order email to the store admin who'll have "
+"to manually create and send an invoice to the customer."
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:64
+msgid "Enable/Disable"
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:66
+msgid "Enable Invoice Payment"
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:70
+msgid "Title"
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:72
+msgid "This controls the title which the user sees during checkout."
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:73
+msgid "Invoice Payment"
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:77
+msgid "Description"
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:79
+msgid "Payment method description which the user sees during checkout."
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:80
+msgid "Thank you for your order. You'll be invoiced soon."
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:84
+msgid "Instructions"
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:86
+msgid ""
+"Instructions that will be added to the thank you page after checkout and "
+"included within the new order email."
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:87
+msgid ""
+"If you're an account customer you'll be invoiced soon with regards to "
+"payment of your order."
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:91
+msgid "Enable for shipping methods"
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:96
+msgid ""
+"If Invoice is only available for certain methods, set it up here. Leave "
+"blank to enable for all methods."
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:100
+msgid "Select shipping methods"
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:104
+msgid "Accept for virtual orders"
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:105
+msgid "Accept Invoice if the order is virtual"
+msgstr ""
+
+#: ../classes/class-woocommerce-invoice-gateway.php:207
+msgid "Awaiting invoice payment"
+msgstr ""
+
+#. Name of the plugin
+msgid "WooCommerce Invoice Gateway"
+msgstr ""
+
+#. URI of the plugin
+msgid "https://github.com/stuartduff/woocommerce-invoice-gateway"
+msgstr ""
+
+#. Description of the plugin
+msgid ""
+"Adds Invoice payment gateway functionality to your WooCommerce store. This "
+"type of payment method is usually used in B2B transactions with account "
+"customers where taking instant digital payment is not an option."
+msgstr ""
+
+#. Author of the plugin
+msgid "Stuart Duff"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "http://stuartduff.com"
+msgstr ""
+
+#: ../woocommerce-invoice-gateway.php:157
+msgid ""
+"The WooCommerce Invoice Gateway extension requires that you have the "
+"WooCommerce core plugin installed and activated."
+msgstr ""
+
+#: ../woocommerce-invoice-gateway.php:157
+msgid "Install WooCommerce"
+msgstr ""
+
+#: ../woocommerce-invoice-gateway.php:181
+msgid "View WooCommerce Settings"
+msgstr ""
+
+#: ../woocommerce-invoice-gateway.php:181
+msgid "Settings"
+msgstr ""

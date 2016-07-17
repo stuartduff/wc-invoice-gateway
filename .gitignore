@@ -1,0 +1,8 @@
+# OS X metadata
+.DS_Store
+
+# Windows junk
+Thumbs.db
+
+# Translation
+.pot~
