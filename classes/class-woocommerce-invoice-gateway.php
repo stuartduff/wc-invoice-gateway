@@ -34,6 +34,8 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
     $this->title              = $this->get_option( 'title' );
 		$this->description        = $this->get_option( 'description' );
 		$this->instructions       = $this->get_option( 'instructions' );
+    $this->enable_for_methods = $this->get_option( 'enable_for_methods', array() );
+		$this->enable_for_virtual = $this->get_option( 'enable_for_virtual', 'yes' ) === 'yes' ? true : false;
 
     // Actions
     add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
