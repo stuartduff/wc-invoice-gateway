@@ -243,7 +243,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
    * @param bool $plain_text
    */
   public function email_instructions( $order, $sent_to_admin, $plain_text = false ) {
-    if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->payment_method && 'on-hold' !== $order->payment_status ) {
+    if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->payment_method && apply_filters( 'woocommerce_invoice_gateway_process_payment_order_status', 'on-hold' ) !== $order->payment_status ) {
         echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
     }
   }
