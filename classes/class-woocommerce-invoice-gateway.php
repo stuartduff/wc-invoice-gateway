@@ -34,6 +34,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
     $this->title              = $this->get_option( 'title' );
 		$this->description        = $this->get_option( 'description' );
 		$this->instructions       = $this->get_option( 'instructions' );
+    $this->order_status       = $this->get_option( 'order_status' );
     $this->enable_for_methods = $this->get_option( 'enable_for_methods', array() );
 		$this->enable_for_virtual = $this->get_option( 'enable_for_virtual', 'yes' ) === 'yes' ? true : false;
 
@@ -89,6 +90,23 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
       'default'     => __( 'If you\'re an account customer you\'ll be invoiced soon with regards to payment for your order.', 'woocommerce-invoice-gateway' ),
       'desc_tip'    => true,
       ),
+      'order_status' => array(
+				'title'             => __( 'Choose and order status', 'woocommerce-invoice-gateway' ),
+				'type'              => 'select',
+				'class'             => 'wc-enhanced-select',
+				'css'               => 'width: 450px;',
+				'default'           => 'on-hold',
+				'description'       => __( 'Choose an order status that will be set after order completion.', 'woocommerce-invoice-gateway' ),
+				'options'           => array(
+          'on-hold'         => 'On Hold',
+          'processing'      => 'Processing',
+          'completed'       => 'Completed',
+        ),
+				'desc_tip'          => true,
+				'custom_attributes' => array(
+				'data-placeholder'  => __( 'Select order status', 'woocommerce-invoice-gateway' )
+				)
+			),
       'enable_for_methods' => array(
 				'title'             => __( 'Enable for shipping methods', 'woocommerce-invoice-gateway' ),
 				'type'              => 'multiselect',
@@ -206,7 +224,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
     $order = wc_get_order( $order_id );
 
     // Mark as on-hold (we're awaiting the invoice)
-    $order->update_status( apply_filters( 'woocommerce_invoice_gateway_process_payment_order_status', 'on-hold' ), __('Awaiting invoice payment', 'woocommerce-invoice-gateway' ) );
+    $order->update_status( apply_filters( 'woocommerce_invoice_gateway_process_payment_order_status', $this->order_status ), __('Awaiting invoice payment', 'woocommerce-invoice-gateway' ) );
 
     // Reduce stock levels
     $order->reduce_order_stock();
@@ -243,7 +261,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
    * @param bool $plain_text
    */
   public function email_instructions( $order, $sent_to_admin, $plain_text = false ) {
-    if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->payment_method && apply_filters( 'woocommerce_invoice_gateway_process_payment_order_status', 'on-hold' ) !== $order->payment_status ) {
+    if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->payment_method && apply_filters( 'woocommerce_invoice_gateway_process_payment_order_status', $this->order_status ) !== $order->payment_status ) {
         echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
     }
   }
