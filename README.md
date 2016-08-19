@@ -17,7 +17,7 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 
 ## Notes
 
-You may want to change the order status from it's default of **on-hold** to **processing** and send the processing email to the customer. If so you can use this filter below by adding it to a themes functions.php file.
+You may want to change the order status from it's default of **on-hold** to another status like **processing** or **completed** and send the corresponding email to the customer. If so you can use this filter below by adding it to a themes functions.php file.
 
 https://gist.github.com/stuartduff/b805d997aeea1169569a1b76ba2ea08a
 
