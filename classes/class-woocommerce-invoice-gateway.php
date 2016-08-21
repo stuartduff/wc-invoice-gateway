@@ -96,7 +96,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
 				'class'             => 'wc-enhanced-select',
 				'css'               => 'width: 450px;',
 				'default'           => 'on-hold',
-				'description'       => __( 'Choose an order status that will be set after order completion.', 'woocommerce-invoice-gateway' ),
+				'description'       => __( 'Choose the order status that will be set after checkout', 'woocommerce-invoice-gateway' ),
 				'options'           => array(
           'on-hold'         => 'On Hold',
           'processing'      => 'Processing',
