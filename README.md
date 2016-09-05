@@ -1,6 +1,8 @@
 # WooCommerce Invoice Payment Gateway
 Adds an Invoice Payment Gateway to the [WooCommerce](https://www.woocommerce.com/) plugin. This type of payment method is usually used in B2B transactions with account customers where taking instant digital payment is not an option.
 
+An order status of either On Hold, Processing or Completed can be chosen from the settings panel which will be applied to all orders processed via the WooCommerce invoice payment gateway.
+
 ## Installation
 
 1. Download the plugin from it's GitHub Repository Download [WooCommerce Invoice Payment Gateway](https://github.com/stuartduff/woocommerce-invoice-payment-gateway).
