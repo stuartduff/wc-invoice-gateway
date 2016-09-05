@@ -3,6 +3,8 @@ Adds an Invoice Payment Gateway to the [WooCommerce](https://www.woocommerce.com
 
 An order status of either On Hold, Processing or Completed can be chosen from the settings panel which will be applied to all orders processed via the WooCommerce invoice payment gateway.
 
+![woocommerce-invoice-gateway-settings](https://cloud.githubusercontent.com/assets/1190565/18257488/6d4c8a08-73bc-11e6-82ec-27914d991d82.png)
+
 ## Installation
 
 1. Download the plugin from it's GitHub Repository Download [WooCommerce Invoice Payment Gateway](https://github.com/stuartduff/woocommerce-invoice-payment-gateway).
