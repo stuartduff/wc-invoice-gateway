@@ -21,9 +21,9 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
 	 */
   public function __construct() {
     $this->id	                = 'invoice';
-    $this->icon               = apply_filters('woocommerce_invoice_gateway_icon', '');
-    $this->method_title       = __( 'Invoice Payments', 'woocommerce-invoice-gateway' );
-    $this->method_description = __( 'Allows invoice payments. Sends an order email to the store admin who\'ll have to manually create and send an invoice to the customer.', 'woocommerce-invoice-gateway' );
+    $this->icon               = apply_filters('wc_invoice_gateway_icon', '');
+    $this->method_title       = __( 'Invoice Payments', 'wc-invoice-gateway' );
+    $this->method_description = __( 'Allows invoice payments. Sends an order email to the store admin who\'ll have to manually create and send an invoice to the customer.', 'wc-invoice-gateway' );
     $this->has_fields 	      = false;
 
     // Load the settings
@@ -64,39 +64,39 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
 
     $this->form_fields = array(
     'enabled' => array(
-      'title'       => __( 'Enable/Disable', 'woocommerce-invoice-gateway' ),
+      'title'       => __( 'Enable/Disable', 'wc-invoice-gateway' ),
       'type'        => 'checkbox',
-      'label'       => __( 'Enable Invoice Payment', 'woocommerce-invoice-gateway' ),
+      'label'       => __( 'Enable Invoice Payment', 'wc-invoice-gateway' ),
       'default'     => 'yes'
       ),
     'title' => array(
-      'title'       => __( 'Title', 'woocommerce-invoice-gateway' ),
+      'title'       => __( 'Title', 'wc-invoice-gateway' ),
       'type'        => 'text',
-      'description' => __( 'This controls the title which the user sees during checkout.', 'woocommerce-invoice-gateway' ),
-      'default'     => __( 'Invoice Payment', 'woocommerce-invoice-gateway' ),
+      'description' => __( 'This controls the title which the user sees during checkout.', 'wc-invoice-gateway' ),
+      'default'     => __( 'Invoice Payment', 'wc-invoice-gateway' ),
       'desc_tip'    => true,
       ),
     'description' => array(
-      'title'       => __( 'Description', 'woocommerce-invoice-gateway' ),
+      'title'       => __( 'Description', 'wc-invoice-gateway' ),
       'type'        => 'textarea',
-      'description' => __( 'Payment method description which the user sees during checkout.', 'woocommerce-invoice-gateway' ),
-      'default'     => __( 'Thank you for your order. You\'ll be invoiced soon.', 'woocommerce-invoice-gateway' ),
+      'description' => __( 'Payment method description which the user sees during checkout.', 'wc-invoice-gateway' ),
+      'default'     => __( 'Thank you for your order. You\'ll be invoiced soon.', 'wc-invoice-gateway' ),
       'desc_tip'    => true,
       ),
     'instructions' => array(
-      'title'       => __( 'Instructions', 'woocommerce-invoice-gateway' ),
+      'title'       => __( 'Instructions', 'wc-invoice-gateway' ),
       'type'        => 'textarea',
-      'description' => __( 'Instructions that will be added to the thank you page after checkout and included within the new order email.', 'woocommerce-invoice-gateway' ),
-      'default'     => __( 'If you\'re an account customer you\'ll be invoiced soon with regards to payment for your order.', 'woocommerce-invoice-gateway' ),
+      'description' => __( 'Instructions that will be added to the thank you page after checkout and included within the new order email.', 'wc-invoice-gateway' ),
+      'default'     => __( 'If you\'re an account customer you\'ll be invoiced soon with regards to payment for your order.', 'wc-invoice-gateway' ),
       'desc_tip'    => true,
       ),
       'order_status' => array(
-				'title'             => __( 'Choose and order status', 'woocommerce-invoice-gateway' ),
+				'title'             => __( 'Choose and order status', 'wc-invoice-gateway' ),
 				'type'              => 'select',
 				'class'             => 'wc-enhanced-select',
 				'css'               => 'width: 450px;',
 				'default'           => 'on-hold',
-				'description'       => __( 'Choose the order status that will be set after checkout', 'woocommerce-invoice-gateway' ),
+				'description'       => __( 'Choose the order status that will be set after checkout', 'wc-invoice-gateway' ),
 				'options'           => array(
           'on-hold'         => 'On Hold',
           'processing'      => 'Processing',
@@ -104,25 +104,25 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
         ),
 				'desc_tip'          => true,
 				'custom_attributes' => array(
-				'data-placeholder'  => __( 'Select order status', 'woocommerce-invoice-gateway' )
+				'data-placeholder'  => __( 'Select order status', 'wc-invoice-gateway' )
 				)
 			),
       'enable_for_methods' => array(
-				'title'             => __( 'Enable for shipping methods', 'woocommerce-invoice-gateway' ),
+				'title'             => __( 'Enable for shipping methods', 'wc-invoice-gateway' ),
 				'type'              => 'multiselect',
 				'class'             => 'wc-enhanced-select',
 				'css'               => 'width: 450px;',
 				'default'           => '',
-				'description'       => __( 'If Invoice is only available for certain methods, set it up here. Leave blank to enable for all methods.', 'woocommerce-invoice-gateway' ),
+				'description'       => __( 'If Invoice is only available for certain methods, set it up here. Leave blank to enable for all methods.', 'wc-invoice-gateway' ),
 				'options'           => $shipping_methods,
 				'desc_tip'          => true,
 				'custom_attributes' => array(
-				'data-placeholder'  => __( 'Select shipping methods', 'woocommerce-invoice-gateway' )
+				'data-placeholder'  => __( 'Select shipping methods', 'wc-invoice-gateway' )
 				)
 			),
 			'enable_for_virtual' => array(
-				'title'             => __( 'Accept for virtual orders', 'woocommerce-invoice-gateway' ),
-				'label'             => __( 'Accept Invoice if the order is virtual', 'woocommerce-invoice-gateway' ),
+				'title'             => __( 'Accept for virtual orders', 'wc-invoice-gateway' ),
+				'label'             => __( 'Accept Invoice if the order is virtual', 'wc-invoice-gateway' ),
 				'type'              => 'checkbox',
 				'default'           => 'yes'
 			),
@@ -159,7 +159,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
 			}
 		}
 
-		$needs_shipping = apply_filters( 'woocommerce_invoice_gateway_cart_needs_shipping', $needs_shipping );
+		$needs_shipping = apply_filters( 'wc_invoice_gateway_cart_needs_shipping', $needs_shipping );
 
 		// Virtual order, with virtual disabled
 		if ( ! $this->enable_for_virtual && ! $needs_shipping ) {
@@ -224,7 +224,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
     $order = wc_get_order( $order_id );
 
     // Mark as on-hold (we're awaiting the invoice)
-    $order->update_status( apply_filters( 'woocommerce_invoice_gateway_process_payment_order_status', $this->order_status ), __('Awaiting invoice payment', 'woocommerce-invoice-gateway' ) );
+    $order->update_status( apply_filters( 'wc_invoice_gateway_process_payment_order_status', $this->order_status ), __('Awaiting invoice payment', 'wc-invoice-gateway' ) );
 
     // Reduce stock levels
     $order->reduce_order_stock();
@@ -261,7 +261,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
    * @param bool $plain_text
    */
   public function email_instructions( $order, $sent_to_admin, $plain_text = false ) {
-    if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->payment_method && apply_filters( 'woocommerce_invoice_gateway_process_payment_order_status', $this->order_status ) !== $order->payment_status ) {
+    if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->payment_method && apply_filters( 'wc_invoice_gateway_process_payment_order_status', $this->order_status ) !== $order->payment_status ) {
         echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
     }
   }

@@ -1,8 +1,8 @@
 === WooCommerce Invoice Gateway ===
 Contributors: stuartduff
 Tags: ecommerce, e-commerce, store, sales, sell, shop, cart, checkout
-Requires at least: 4.5
-Tested up to: 4.5
+Requires at least: 4.6
+Tested up to: 4.6.1
 Stable tag: 1.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html

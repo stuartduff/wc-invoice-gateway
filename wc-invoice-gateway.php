@@ -1,15 +1,15 @@
 <?php
 /**
  * Plugin Name:       WooCommerce Invoice Gateway
- * Plugin URI:        https://github.com/stuartduff/woocommerce-invoice-gateway
+ * Plugin URI:        https://wordpress.org/plugins/wc-invoice-gateway/
  * Description:       Adds Invoice payment gateway functionality to your WooCommerce store. This type of payment method is usually used in B2B transactions with account customers where taking instant digital payment is not an option.
  * Version:           1.0.0
  * Author:            Stuart Duff
  * Author URI:        http://stuartduff.com
- * Requires at least: 4.5.0
- * Tested up to:      4.5.3
+ * Requires at least: 4.6.0
+ * Tested up to:      4.6.1
  *
- * Text Domain: woocommerce-invoice-gateway
+ * Text Domain: wc-invoice-gateway
  * Domain Path: /languages/
  *
  * @package WC_Invoice_Gateway
@@ -68,7 +68,7 @@ final class WC_Invoice_Gateway {
    * @return  void
    */
   public function __construct() {
-    $this->token            = 'woocommerce-invoice-gateway';
+    $this->token            = 'wc-invoice-gateway';
     $this->plugin_url       = plugin_dir_url( __FILE__ );
     $this->plugin_path      = plugin_dir_path( __FILE__ );
     $this->plugin_basename  = plugin_basename( __FILE__ );
@@ -105,7 +105,7 @@ final class WC_Invoice_Gateway {
    * @return  void
    */
   public function load_plugin_textdomain() {
-    load_plugin_textdomain( 'woocommerce-invoice-gateway', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+    load_plugin_textdomain( 'wc-invoice-gateway', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
   }
 
   /**
@@ -138,8 +138,8 @@ final class WC_Invoice_Gateway {
    */
   public function plugin_setup() {
     if ( class_exists( 'WooCommerce' ) ) {
-      require $this->plugin_path . '/classes/class-woocommerce-invoice-gateway.php';
-      add_filter( 'woocommerce_payment_gateways',  array( $this, 'add_woocommerce_invoice_gateway' ) );
+      require $this->plugin_path . '/classes/class-wc-invoice-gateway.php';
+      add_filter( 'woocommerce_payment_gateways',  array( $this, 'add_wc_invoice_gateway' ) );
       add_filter( 'plugin_action_links_' . $this->plugin_basename, array( $this, 'plugin_action_links' ) );
     } else {
       add_action( 'admin_notices', array( $this, 'install_woocommerce_core_notice' ) );
@@ -154,7 +154,7 @@ final class WC_Invoice_Gateway {
    */
   public function install_woocommerce_core_notice() {
     echo '<div class="notice is-dismissible updated">
-      <p>' . __( 'The WooCommerce Invoice Gateway extension requires that you have the WooCommerce core plugin installed and activated.', 'woocommerce-invoice-gateway' ) . ' <a href="https://woocommerce.com/download/" target="_blank">' . __( 'Install WooCommerce', 'woocommerce-invoice-gateway' ) . '</a></p>
+      <p>' . __( 'The WooCommerce Invoice Gateway extension requires that you have the WooCommerce core plugin installed and activated.', 'wc-invoice-gateway' ) . ' <a href="https://woocommerce.com/download/" target="_blank">' . __( 'Install WooCommerce', 'wc-invoice-gateway' ) . '</a></p>
     </div>';
   }
 
@@ -164,7 +164,7 @@ final class WC_Invoice_Gateway {
    * @since   1.0.0
    * @return $methods
 	 */
-	public function add_woocommerce_invoice_gateway( $methods ) {
+	public function add_wc_invoice_gateway( $methods ) {
 		$methods[] = 'WC_Gateway_Invoice';
 		return $methods;
 	}
@@ -178,7 +178,7 @@ final class WC_Invoice_Gateway {
 	 */
 	public static function plugin_action_links( $links ) {
 		$action_links = array(
-			'settings' => '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=invoice' ) . '" title="' . esc_attr( __( 'View WooCommerce Settings', 'woocommerce-invoice-gateway' ) ) . '">' . __( 'Settings', 'woocommerce-invoice-gateway' ) . '</a>',
+			'settings' => '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=invoice' ) . '" title="' . esc_attr( __( 'View WooCommerce Settings', 'wc-invoice-gateway' ) ) . '">' . __( 'Settings', 'wc-invoice-gateway' ) . '</a>',
 		);
 
 		return array_merge( $action_links, $links );
