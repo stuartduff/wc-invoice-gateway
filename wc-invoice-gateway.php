@@ -159,29 +159,29 @@ final class WC_Invoice_Gateway {
   }
 
   /**
-	 * Add the gateway to WooCommerce
+   * Add the gateway to WooCommerce
    * @access  public
    * @since   1.0.0
    * @return $methods
-	 */
-	public function add_wc_invoice_gateway( $methods ) {
-		$methods[] = 'WC_Gateway_Invoice';
-		return $methods;
-	}
+   */
+  public function add_wc_invoice_gateway( $methods ) {
+    $methods[] = 'WC_Gateway_Invoice';
+    return $methods;
+  }
 
   /**
-	 * Show action links on the plugin screen.
+   * Show action links on the plugin screen.
    * @access  public
    * @since   1.0.0
-	 * @param	mixed $links Plugin Action links
-	 * @return	array
-	 */
-	public static function plugin_action_links( $links ) {
-		$action_links = array(
-			'settings' => '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=invoice' ) . '" title="' . esc_attr( __( 'View WooCommerce Settings', 'wc-invoice-gateway' ) ) . '">' . __( 'Settings', 'wc-invoice-gateway' ) . '</a>',
-		);
+   * @param	mixed $links Plugin Action links
+   * @return	array
+   */
+  public static function plugin_action_links( $links ) {
+    $action_links = array(
+      'settings' => '<a href="' . admin_url( 'admin.php?page=wc-settings&tab=checkout&section=invoice' ) . '" title="' . esc_attr( __( 'View WooCommerce Settings', 'wc-invoice-gateway' ) ) . '">' . __( 'Settings', 'wc-invoice-gateway' ) . '</a>',
+    );
 
-		return array_merge( $action_links, $links );
-	}
+    return array_merge( $action_links, $links );
+  }
 
 } // End Class
