@@ -105,7 +105,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
         'desc_tip'          => true,
         'custom_attributes' => array(
           'data-placeholder'  => __( 'Select order status', 'wc-invoice-gateway' )
-				)
+        )
       ),
       'enable_for_methods' => array(
         'title'             => __( 'Enable for shipping methods', 'wc-invoice-gateway' ),
