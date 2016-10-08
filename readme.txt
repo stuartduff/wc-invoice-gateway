@@ -11,7 +11,11 @@ Adds an Invoice Payment Gateway to the WooCommerce plugin for when instant payme
 
 == Description ==
 
-Adds an Invoice Payment Gateway to the WooCommerce plugin. This type of payment method is usually used in B2B transactions with account customers where taking instant digital payment is not an option.
+Adds an Invoice Payment Gateway to the [WooCommerce](https://www.woocommerce.com/) plugin. This type of payment method is usually used in B2B transactions with account / invoice customers where taking instant digital payment is not an option.
+
+An order status of either On Hold, Processing or Completed can be chosen from the settings panel. The chosen order status will be applied to all orders processed via the WooCommerce invoice payment gateway and the corresponding order emails will be sent.
+
+The plugin does not create customer invoices for you and this is something you would still have to use an accounting program like Quickbooks or similar for. 
 
 == Installation ==
 
@@ -22,7 +26,10 @@ Adds an Invoice Payment Gateway to the WooCommerce plugin. This type of payment 
 
 == Minimum Requirements ==
 
-For this extension to function [WooCommerce](https://woocommerce.com/) must be installed and activated on your WordPress site.
+For this extension to function [WooCommerce](https://www.woocommerce.com/) must be installed and activated on your [WordPress](https://wordpress.org/) site.
+
+* [WordPress](https://wordpress.org/) v4.6
+* [WooCommerce](https://www.woocommerce.com/) v2.6
 
 == Changelog ==
 
