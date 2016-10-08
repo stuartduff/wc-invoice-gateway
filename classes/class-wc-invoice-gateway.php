@@ -16,27 +16,27 @@ if ( ! defined( 'ABSPATH' ) ) {
 class WC_Gateway_Invoice extends WC_Payment_Gateway {
 
   /**
-	 * Constructor for the gateway.
+   * Constructor for the gateway.
    * @since   1.0.0
-	 */
+   */
   public function __construct() {
-    $this->id	                = 'invoice';
+    $this->id                 = 'invoice';
     $this->icon               = apply_filters('wc_invoice_gateway_icon', '');
     $this->method_title       = __( 'Invoice Payments', 'wc-invoice-gateway' );
     $this->method_description = __( 'Allows invoice payments. Sends an order email to the store admin who\'ll have to manually create and send an invoice to the customer.', 'wc-invoice-gateway' );
     $this->has_fields 	      = false;
 
     // Load the settings
-		$this->init_form_fields();
-		$this->init_settings();
+    $this->init_form_fields();
+    $this->init_settings();
 
     // Define user set variables
     $this->title              = $this->get_option( 'title' );
-		$this->description        = $this->get_option( 'description' );
-		$this->instructions       = $this->get_option( 'instructions' );
+    $this->description        = $this->get_option( 'description' );
+    $this->instructions       = $this->get_option( 'instructions' );
     $this->order_status       = $this->get_option( 'order_status' );
     $this->enable_for_methods = $this->get_option( 'enable_for_methods', array() );
-		$this->enable_for_virtual = $this->get_option( 'enable_for_virtual', 'yes' ) === 'yes' ? true : false;
+    $this->enable_for_virtual = $this->get_option( 'enable_for_virtual', 'yes' ) === 'yes' ? true : false;
 
     // Actions
     add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
@@ -91,126 +91,127 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
       'desc_tip'    => true,
       ),
       'order_status' => array(
-				'title'             => __( 'Choose and order status', 'wc-invoice-gateway' ),
-				'type'              => 'select',
-				'class'             => 'wc-enhanced-select',
-				'css'               => 'width: 450px;',
-				'default'           => 'on-hold',
-				'description'       => __( 'Choose the order status that will be set after checkout', 'wc-invoice-gateway' ),
-				'options'           => array(
+        'title'             => __( 'Choose and order status', 'wc-invoice-gateway' ),
+        'type'              => 'select',
+        'class'             => 'wc-enhanced-select',
+        'css'               => 'width: 450px;',
+        'default'           => 'on-hold',
+        'description'       => __( 'Choose the order status that will be set after checkout', 'wc-invoice-gateway' ),
+        'options'           => array(
           'on-hold'         => 'On Hold',
           'processing'      => 'Processing',
           'completed'       => 'Completed',
         ),
-				'desc_tip'          => true,
-				'custom_attributes' => array(
-				'data-placeholder'  => __( 'Select order status', 'wc-invoice-gateway' )
+        'desc_tip'          => true,
+        'custom_attributes' => array(
+          'data-placeholder'  => __( 'Select order status', 'wc-invoice-gateway' )
 				)
-			),
+      ),
       'enable_for_methods' => array(
-				'title'             => __( 'Enable for shipping methods', 'wc-invoice-gateway' ),
-				'type'              => 'multiselect',
-				'class'             => 'wc-enhanced-select',
-				'css'               => 'width: 450px;',
-				'default'           => '',
-				'description'       => __( 'If Invoice is only available for certain methods, set it up here. Leave blank to enable for all methods.', 'wc-invoice-gateway' ),
-				'options'           => $shipping_methods,
-				'desc_tip'          => true,
-				'custom_attributes' => array(
-				'data-placeholder'  => __( 'Select shipping methods', 'wc-invoice-gateway' )
-				)
-			),
-			'enable_for_virtual' => array(
-				'title'             => __( 'Accept for virtual orders', 'wc-invoice-gateway' ),
-				'label'             => __( 'Accept Invoice if the order is virtual', 'wc-invoice-gateway' ),
-				'type'              => 'checkbox',
-				'default'           => 'yes'
-			),
+        'title'             => __( 'Enable for shipping methods', 'wc-invoice-gateway' ),
+        'type'              => 'multiselect',
+        'class'             => 'wc-enhanced-select',
+        'css'               => 'width: 450px;',
+        'default'           => '',
+        'description'       => __( 'If Invoice is only available for certain methods, set it up here. Leave blank to enable for all methods.', 'wc-invoice-gateway' ),
+        'options'           => $shipping_methods,
+        'desc_tip'          => true,
+        'custom_attributes' => array(
+          'data-placeholder'  => __( 'Select shipping methods', 'wc-invoice-gateway' )
+        )
+      ),
+      'enable_for_virtual' => array(
+        'title'             => __( 'Accept for virtual orders', 'wc-invoice-gateway' ),
+        'label'             => __( 'Accept Invoice if the order is virtual', 'wc-invoice-gateway' ),
+        'type'              => 'checkbox',
+        'default'           => 'yes'
+      ),
     );
 
   }
 
   /**
-	 * Check If The Gateway Is Available For Use.
+   * Check If The Gateway Is Available For Use.
    * @access  public
    * @since   1.0.0
-	 * @return bool
-	 */
-	public function is_available() {
-		$order          = null;
-		$needs_shipping = false;
+   * @return bool
+   */
+  public function is_available() {
+    $order          = null;
+    $needs_shipping = false;
 
-		// Test if shipping is needed first
-		if ( WC()->cart && WC()->cart->needs_shipping() ) {
-			$needs_shipping = true;
-		} elseif ( is_page( wc_get_page_id( 'checkout' ) ) && 0 < get_query_var( 'order-pay' ) ) {
-			$order_id = absint( get_query_var( 'order-pay' ) );
-			$order    = wc_get_order( $order_id );
+    // Test if shipping is needed first
+    if ( WC()->cart && WC()->cart->needs_shipping() ) {
+      $needs_shipping = true;
+    } elseif ( is_page( wc_get_page_id( 'checkout' ) ) && 0 < get_query_var( 'order-pay' ) ) {
+      $order_id = absint( get_query_var( 'order-pay' ) );
+      $order    = wc_get_order( $order_id );
 
-			// Test if order needs shipping.
-			if ( 0 < sizeof( $order->get_items() ) ) {
-				foreach ( $order->get_items() as $item ) {
-					$_product = $order->get_product_from_item( $item );
-					if ( $_product && $_product->needs_shipping() ) {
-						$needs_shipping = true;
-						break;
-					}
-				}
-			}
-		}
+      // Test if order needs shipping.
+      if ( 0 < sizeof( $order->get_items() ) ) {
+        foreach ( $order->get_items() as $item ) {
+          $_product = $order->get_product_from_item( $item );
+          if ( $_product && $_product->needs_shipping() ) {
+            $needs_shipping = true;
+            break;
+          }
+        }
+      }
+    }
 
-		$needs_shipping = apply_filters( 'wc_invoice_gateway_cart_needs_shipping', $needs_shipping );
+    $needs_shipping = apply_filters( 'wc_invoice_gateway_cart_needs_shipping', $needs_shipping );
 
-		// Virtual order, with virtual disabled
-		if ( ! $this->enable_for_virtual && ! $needs_shipping ) {
-			return false;
-		}
+    // Virtual order, with virtual disabled
+    if ( ! $this->enable_for_virtual && ! $needs_shipping ) {
+      return false;
+    }
 
-		// Check methods
-		if ( ! empty( $this->enable_for_methods ) && $needs_shipping ) {
+    // Check methods
+    if ( ! empty( $this->enable_for_methods ) && $needs_shipping ) {
 
-			// Only apply if all packages are being shipped via chosen methods, or order is virtual
-			$chosen_shipping_methods_session = WC()->session->get( 'chosen_shipping_methods' );
+      // Only apply if all packages are being shipped via chosen methods, or order is virtual
+      $chosen_shipping_methods_session = WC()->session->get( 'chosen_shipping_methods' );
 
-			if ( isset( $chosen_shipping_methods_session ) ) {
-				$chosen_shipping_methods = array_unique( $chosen_shipping_methods_session );
-			} else {
-				$chosen_shipping_methods = array();
-			}
+      if ( isset( $chosen_shipping_methods_session ) ) {
+        $chosen_shipping_methods = array_unique( $chosen_shipping_methods_session );
+      } else {
+        $chosen_shipping_methods = array();
+      }
 
-			$check_method = false;
+      $check_method = false;
 
-			if ( is_object( $order ) ) {
-				if ( $order->shipping_method ) {
-					$check_method = $order->shipping_method;
-				}
+      if ( is_object( $order ) ) {
+        if ( $order->shipping_method ) {
+          $check_method = $order->shipping_method;
+      }
 
-			} elseif ( empty( $chosen_shipping_methods ) || sizeof( $chosen_shipping_methods ) > 1 ) {
-				$check_method = false;
-			} elseif ( sizeof( $chosen_shipping_methods ) == 1 ) {
-				$check_method = $chosen_shipping_methods[0];
-			}
+      } elseif ( empty( $chosen_shipping_methods ) || sizeof( $chosen_shipping_methods ) > 1 ) {
+        $check_method = false;
+      } elseif ( sizeof( $chosen_shipping_methods ) == 1 ) {
+        $check_method = $chosen_shipping_methods[0];
+      }
 
-			if ( ! $check_method ) {
-				return false;
-			}
+      if ( ! $check_method ) {
+        return false;
+      }
 
-			$found = false;
+      $found = false;
 
-			foreach ( $this->enable_for_methods as $method_id ) {
-				if ( strpos( $check_method, $method_id ) === 0 ) {
-					$found = true;
-					break;
-				}
-			}
+      foreach ( $this->enable_for_methods as $method_id ) {
+        if ( strpos( $check_method, $method_id ) === 0 ) {
+          $found = true;
+          break;
+        }
+      }
 
-			if ( ! $found ) {
-				return false;
-			}
-		}
+      if ( ! $found ) {
+        return false;
+      }
+    }
 
-		return parent::is_available();
-	}
+    return parent::is_available();
+
+  }
 
   /**
    * Process the payment and return the result.
@@ -249,7 +250,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
   public function thankyou_page() {
     if ( $this->instructions ) {
       echo wpautop( wptexturize( $this->instructions ) );
-		}
+    }
   }
 
   /**
@@ -262,7 +263,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
    */
   public function email_instructions( $order, $sent_to_admin, $plain_text = false ) {
     if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->payment_method && apply_filters( 'wc_invoice_gateway_process_payment_order_status', $this->order_status ) !== $order->payment_status ) {
-        echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
+      echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
     }
   }
 
