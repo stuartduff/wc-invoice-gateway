@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 /**
- * WooCommerce Invoice Gateway.
+ * WC Invoice Gateway.
  *
  * Provides a Invoice Payment Gateway.
  *

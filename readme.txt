@@ -31,6 +31,11 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 * [WordPress](https://wordpress.org/) v4.6
 * [WooCommerce](https://www.woocommerce.com/) v2.6
 
+
+== Screenshots ==
+
+1. The WooCommerce Invoice Gateway settings panel.
+
 == Changelog ==
 
 = 1.0.0 - 20/07/16 =
