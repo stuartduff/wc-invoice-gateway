@@ -9,7 +9,7 @@ The plugin itself does not create customer invoices for you only orders. For inv
 
 ## Installation
 
-1. Download the plugin from it's GitHub Repository Download [WooCommerce Invoice Payment Gateway](https://github.com/stuartduff/woocommerce-invoice-payment-gateway).
+1. Download the plugin from WordPress.org [WooCommerce Invoice Payment Gateway](https://wordpress.org/plugins/wc-invoice-gateway/).
 2. Goto WordPress > Appearance > Plugins > Add New.
 3. Click Upload Plugin and Choose File, then select the plugin's .zip file. Click Install Now.
 4. Click Activate to use your new plugin right away.
