@@ -262,7 +262,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
    * @param bool $plain_text
    */
   public function email_instructions( $order, $sent_to_admin, $plain_text = false ) {
-    if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->payment_method && apply_filters( 'wc_invoice_gateway_process_payment_order_status', $this->order_status ) !== $order->payment_status ) {
+    if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->get_payment_method() && apply_filters( 'wc_invoice_gateway_process_payment_order_status', $this->order_status ) !== $order->get_status() ) {
       echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
     }
   }
