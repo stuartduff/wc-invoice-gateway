@@ -19,8 +19,8 @@ The plugin itself does not create customer invoices for you only orders. For inv
 
 For this extension to function [WooCommerce](https://www.woocommerce.com/) must be installed and activated on your [WordPress](https://wordpress.org/) site.
 
-* [WordPress](https://wordpress.org/) v4.6
-* [WooCommerce](https://www.woocommerce.com/) v2.6
+* [WordPress](https://wordpress.org/)
+* [WooCommerce](https://www.woocommerce.com/)
 
 ## Changelog
 
