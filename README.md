@@ -24,5 +24,8 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 
 ## Changelog
 
+**1.0.1 - 27/10/17**
+* Added WooCommerce plugin version check compatibility.
+
 **1.0.0 - 18/07/16**
 * Initial Release - first version of the plugin released.
