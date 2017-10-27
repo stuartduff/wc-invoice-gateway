@@ -1,9 +1,9 @@
 === WooCommerce Invoice Gateway ===
 Contributors: stuartduff
-Tags: ecommerce, e-commerce, store, sales, sell, shop, cart, checkout, woocommerce
+Tags: ecommerce, e-commerce, store, sales, sell, shop, cart, checkout, woocommerce, payments
 Requires at least: 4.6
 Tested up to: 4.8
-Stable tag: 1.0.0
+Stable tag: 1.0.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -37,6 +37,9 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 1. The WooCommerce Invoice Gateway settings panel.
 
 == Changelog ==
+
+= 1.0.1 - 27/10/17 =
+* Added WooCommerce plugin version check compatibility.
 
 = 1.0.0 - 20/07/16 =
 * Initial Release - first version of the plugin released.
