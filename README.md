@@ -24,6 +24,10 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 
 ## Changelog
 
+**1.0.2 - 04/11/17**
+* Fix - Enable for shipping methods dropdown.
+* WooCommerce v3.2+ compatibility.
+
 **1.0.1 - 27/10/17**
 * Added WooCommerce plugin version check compatibility.
 

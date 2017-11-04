@@ -20,11 +20,8 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
    * @since   1.0.0
    */
   public function __construct() {
-    $this->id                 = 'invoice';
-    $this->icon               = apply_filters('wc_invoice_gateway_icon', '');
-    $this->method_title       = __( 'Invoice Payments', 'wc-invoice-gateway' );
-    $this->method_description = __( 'Allows invoice payments. Sends an order email to the store admin who\'ll have to manually create and send an invoice to the customer.', 'wc-invoice-gateway' );
-    $this->has_fields 	      = false;
+    // Setup general properties
+		$this->setup_properties();
 
     // Load the settings
     $this->init_form_fields();
@@ -48,6 +45,17 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
   }
 
   /**
+	 * Setup general properties for the gateway.
+	 */
+	protected function setup_properties() {
+    $this->id                 = 'invoice';
+    $this->icon               = apply_filters('wc_invoice_gateway_icon', '');
+    $this->method_title       = __( 'Invoice Payments', 'wc-invoice-gateway' );
+    $this->method_description = __( 'Allows invoice payments. Sends an order email to the store admin who\'ll have to manually create and send an invoice to the customer.', 'wc-invoice-gateway' );
+    $this->has_fields 	      = false;
+  }
+
+  /**
    * Initialise Gateway Settings Form Fields
    * @since   1.0.0
    * @return  void
@@ -56,11 +64,9 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
 
     $shipping_methods = array();
 
-    if ( is_admin() ) {
-      foreach ( WC()->shipping()->load_shipping_methods() as $method ) {
-        $shipping_methods[ $method->id ] = $method->get_title();
-      }
-    }
+    foreach ( WC()->shipping()->load_shipping_methods() as $method ) {
+			$shipping_methods[ $method->id ] = $method->get_method_title();
+		}
 
     $this->form_fields = array(
     'enabled' => array(
@@ -150,7 +156,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
       // Test if order needs shipping.
       if ( 0 < sizeof( $order->get_items() ) ) {
         foreach ( $order->get_items() as $item ) {
-          $_product = $order->get_product_from_item( $item );
+          $_product = $item->get_product();
           if ( $_product && $_product->needs_shipping() ) {
             $needs_shipping = true;
             break;
@@ -166,48 +172,20 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
       return false;
     }
 
-    // Check methods
-    if ( ! empty( $this->enable_for_methods ) && $needs_shipping ) {
+    // Only apply if all packages are being shipped via chosen method, or order is virtual.
+		if ( ! empty( $this->enable_for_methods ) && $needs_shipping ) {
+			$chosen_shipping_methods = array();
 
-      // Only apply if all packages are being shipped via chosen methods, or order is virtual
-      $chosen_shipping_methods_session = WC()->session->get( 'chosen_shipping_methods' );
+			if ( is_object( $order ) ) {
+				$chosen_shipping_methods = array_unique( array_map( 'wc_get_string_before_colon', $order->get_shipping_methods() ) );
+			} elseif ( $chosen_shipping_methods_session = WC()->session->get( 'chosen_shipping_methods' ) ) {
+				$chosen_shipping_methods = array_unique( array_map( 'wc_get_string_before_colon', $chosen_shipping_methods_session ) );
+			}
 
-      if ( isset( $chosen_shipping_methods_session ) ) {
-        $chosen_shipping_methods = array_unique( $chosen_shipping_methods_session );
-      } else {
-        $chosen_shipping_methods = array();
-      }
-
-      $check_method = false;
-
-      if ( is_object( $order ) ) {
-        if ( $order->shipping_method ) {
-          $check_method = $order->shipping_method;
-      }
-
-      } elseif ( empty( $chosen_shipping_methods ) || sizeof( $chosen_shipping_methods ) > 1 ) {
-        $check_method = false;
-      } elseif ( sizeof( $chosen_shipping_methods ) == 1 ) {
-        $check_method = $chosen_shipping_methods[0];
-      }
-
-      if ( ! $check_method ) {
-        return false;
-      }
-
-      $found = false;
-
-      foreach ( $this->enable_for_methods as $method_id ) {
-        if ( strpos( $check_method, $method_id ) === 0 ) {
-          $found = true;
-          break;
-        }
-      }
-
-      if ( ! $found ) {
-        return false;
-      }
-    }
+			if ( 0 < count( array_diff( $chosen_shipping_methods, $this->enable_for_methods ) ) ) {
+				return false;
+			}
+		}
 
     return parent::is_available();
 
@@ -228,7 +206,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
     $order->update_status( apply_filters( 'wc_invoice_gateway_process_payment_order_status', $this->order_status ), __('Awaiting invoice payment', 'wc-invoice-gateway' ) );
 
     // Reduce stock levels
-    $order->reduce_order_stock();
+    wc_reduce_stock_levels( $order_id );
 
     // Remove cart
     WC()->cart->empty_cart();
@@ -262,7 +240,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
    * @param bool $plain_text
    */
   public function email_instructions( $order, $sent_to_admin, $plain_text = false ) {
-    if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->payment_method && apply_filters( 'wc_invoice_gateway_process_payment_order_status', $this->order_status ) !== $order->payment_status ) {
+    if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->get_payment_method() && apply_filters( 'wc_invoice_gateway_process_payment_order_status', $this->order_status ) !== 'wc-' . $order->get_status() ) {
       echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
     }
   }
