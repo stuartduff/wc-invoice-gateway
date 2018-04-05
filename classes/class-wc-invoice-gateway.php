@@ -1,7 +1,5 @@
 <?php
 
-// Customly modified. Credit goes to original author (https://wordpress.org/plugins/wc-invoice-gateway/)
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
