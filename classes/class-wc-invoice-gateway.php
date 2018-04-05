@@ -1,4 +1,7 @@
 <?php
+
+// Customly modified. Credit goes to original author (https://wordpress.org/plugins/wc-invoice-gateway/)
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
@@ -31,7 +34,8 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
     $this->title              = $this->get_option( 'title' );
     $this->description        = $this->get_option( 'description' );
     $this->instructions       = $this->get_option( 'instructions' );
-    $this->order_status       = $this->get_option( 'order_status' );
+    $this->order_status       = $this->get_option( 'order_status');
+    $this->order_button_text  = $this->get_option( 'order_button_text');
     $this->enable_for_methods = $this->get_option( 'enable_for_methods', array() );
     $this->enable_for_virtual = $this->get_option( 'enable_for_virtual', 'yes' ) === 'yes' ? true : false;
 
@@ -96,6 +100,13 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
       'default'     => __( 'If you\'re an account customer you\'ll be invoiced soon with regards to payment for your order.', 'wc-invoice-gateway' ),
       'desc_tip'    => true,
       ),
+    'order_button_text' => array(
+      'title'       => __( 'Order button text', 'wc-invoice-gateway' ),
+      'type'        => 'text',
+      'description' => __( 'This controls the label of submit button on the checkout page', 'wc-invoice-gateway' ),
+      'default'     => __( 'Request a free quote', 'wc-invoice-gateway' ),
+      'desc_tip'    => true,
+      ),
       'order_status' => array(
         'title'             => __( 'Choose and order status', 'wc-invoice-gateway' ),
         'type'              => 'select',
@@ -103,11 +114,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
         'css'               => 'width: 450px;',
         'default'           => 'on-hold',
         'description'       => __( 'Choose the order status that will be set after checkout', 'wc-invoice-gateway' ),
-        'options'           => array(
-          'on-hold'         => 'On Hold',
-          'processing'      => 'Processing',
-          'completed'       => 'Completed',
-        ),
+        'options'           => $this->get_available_order_statuses(),
         'desc_tip'          => true,
         'custom_attributes' => array(
           'data-placeholder'  => __( 'Select order status', 'wc-invoice-gateway' )
@@ -134,6 +141,19 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
       ),
     );
 
+  }
+
+  /**
+   * Get all order statuses available within WooCommerce
+   * @access  protected
+   * @return array
+   */
+  protected function get_available_order_statuses() {
+    $order_statuses = wc_get_order_statuses();
+    $keys = array_map(function($key) {
+      return str_replace('wc-', '', $key); // Remove prefix
+    }, array_keys($order_statuses));
+    return array_combine($keys, $order_statuses);
   }
 
   /**
