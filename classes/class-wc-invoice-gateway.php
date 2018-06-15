@@ -104,11 +104,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
         'css'               => 'width: 450px;',
         'default'           => 'on-hold',
         'description'       => __( 'Choose the order status that will be set after checkout', 'wc-invoice-gateway' ),
-        'options'           => array(
-          'on-hold'         => 'On Hold',
-          'processing'      => 'Processing',
-          'completed'       => 'Completed',
-        ),
+        'options'           => $this->get_available_order_statuses(),
         'desc_tip'          => true,
         'custom_attributes' => array(
           'data-placeholder'  => __( 'Select order status', 'wc-invoice-gateway' )
@@ -141,6 +137,22 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
       ),
     );
 
+  }
+
+  
+  /**
+   * Get all order statuses available within WooCommerce
+   * Credits to LangeMike
+   * https://github.com/stuartduff/wc-invoice-gateway/pull/3/commits/cd5d1d7a120258a1a6314f04135b8018d6394618
+   * @access  protected
+   * @return array
+   */
+  protected function get_available_order_statuses() {
+    $order_statuses = wc_get_order_statuses();
+    $keys = array_map(function($key) {
+      return str_replace('wc-', '', $key); // Remove prefix
+    }, array_keys($order_statuses));
+    return array_combine($keys, $order_statuses);
   }
 
   /**
