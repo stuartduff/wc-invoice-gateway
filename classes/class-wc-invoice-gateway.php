@@ -32,6 +32,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
     $this->description        = $this->get_option( 'description' );
     $this->instructions       = $this->get_option( 'instructions' );
     $this->order_status       = $this->get_option( 'order_status' );
+    $this->reduce_stock       = $this->get_option( 'reduce_stock' );
     $this->enable_for_methods = $this->get_option( 'enable_for_methods', array() );
     $this->enable_for_virtual = $this->get_option( 'enable_for_virtual', 'yes' ) === 'yes' ? true : false;
 
@@ -112,6 +113,12 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
         'custom_attributes' => array(
           'data-placeholder'  => __( 'Select order status', 'wc-invoice-gateway' )
         )
+      ),
+      'reduce_stock' => array(
+        'title'             => __( 'Reduce Stock', 'wc-invoice-gateway' ),
+        'label'             => __( 'If checked stock is reduced', 'wc-invoice-gateway' ),
+        'type'              => 'checkbox',
+        'default'           => 'yes'
       ),
       'enable_for_methods' => array(
         'title'             => __( 'Enable for shipping methods', 'wc-invoice-gateway' ),
@@ -206,7 +213,9 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
     $order->update_status( apply_filters( 'wc_invoice_gateway_process_payment_order_status', $this->order_status ), __('Awaiting invoice payment', 'wc-invoice-gateway' ) );
 
     // Reduce stock levels
-    wc_reduce_stock_levels( $order_id );
+    if($this->reduce_stock) {
+	wc_reduce_stock_levels( $order_id );
+    }
 
     // Remove cart
     WC()->cart->empty_cart();
