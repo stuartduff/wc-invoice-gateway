@@ -104,9 +104,10 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
         'default'           => 'on-hold',
         'description'       => __( 'Choose the order status that will be set after checkout', 'wc-invoice-gateway' ),
         'options'           => array(
-          'on-hold'         => 'On Hold',
-          'processing'      => 'Processing',
-          'completed'       => 'Completed',
+          'pending'         => __( 'Pending Payment', 'wc-invoice-gateway' ),
+          'on-hold'         => __( 'On Hold', 'wc-invoice-gateway' ),
+          'processing'      => __( 'Processing', 'wc-invoice-gateway' ),
+          'completed'       => __( 'Completed', 'wc-invoice-gateway' ),
         ),
         'desc_tip'          => true,
         'custom_attributes' => array(

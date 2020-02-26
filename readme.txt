@@ -3,7 +3,7 @@ Contributors: stuartduff
 Tags: ecommerce, e-commerce, store, sales, sell, shop, cart, checkout, woocommerce, payments
 Requires at least: 5.3
 Tested up to: 5.3
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -37,6 +37,9 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 1. The WooCommerce Invoice Gateway settings panel.
 
 == Changelog ==
+
+= 1.0.3 - 25/02/20 =
+* Add - Pending Payment order status.
 
 = 1.0.2 - 04/11/17 =
 * Fix - Enable for shipping methods dropdown.
