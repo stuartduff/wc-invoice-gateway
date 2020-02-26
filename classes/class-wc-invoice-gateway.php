@@ -103,12 +103,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
         'css'               => 'width: 450px;',
         'default'           => 'on-hold',
         'description'       => __( 'Choose the order status that will be set after checkout', 'wc-invoice-gateway' ),
-        'options'           => array(
-          'pending'         => __( 'Pending Payment', 'wc-invoice-gateway' ),
-          'on-hold'         => __( 'On Hold', 'wc-invoice-gateway' ),
-          'processing'      => __( 'Processing', 'wc-invoice-gateway' ),
-          'completed'       => __( 'Completed', 'wc-invoice-gateway' ),
-        ),
+        'options'           => $this->get_available_order_statuses(),
         'desc_tip'          => true,
         'custom_attributes' => array(
           'data-placeholder'  => __( 'Select order status', 'wc-invoice-gateway' )
@@ -134,6 +129,30 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
         'default'           => 'yes'
       ),
     );
+
+  }
+
+  /**
+   * Get all order statuses available within WooCommerce
+   * @access  protected
+   * @since   1.0.3
+   * @return array
+   */
+  protected function get_available_order_statuses() {
+    $order_statuses = wc_get_order_statuses();
+
+    $keys = array_map( function( $key ) {
+      return str_replace('wc-', '', $key ); // Remove prefix
+    }, array_keys( $order_statuses ) );
+
+    $returned_statuses = array_combine( $keys, $order_statuses );
+
+    // Remove the statuses of cancelled, refunded and failed from returning.
+    unset( $returned_statuses ['cancelled'] );
+    unset( $returned_statuses ['refunded'] );
+    unset( $returned_statuses ['failed'] );
+
+    return $returned_statuses;
 
   }
 

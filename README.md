@@ -25,7 +25,7 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 ## Changelog
 
 **1.0.3 - 25/02/20**
-* Add - Pending Payment order status.
+* Add - Functionality to return custom WooCommerce order statuses.
 
 **1.0.2 - 04/11/17**
 * Fix - Enable for shipping methods dropdown.

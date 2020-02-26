@@ -1,9 +1,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: WooCommerce Invoice Gateway\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-02-26 01:11+0000\n"
+"POT-Creation-Date: 2020-02-26 21:06+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -98,49 +98,33 @@ msgstr ""
 msgid "Choose the order status that will be set after checkout"
 msgstr ""
 
-#: classes/class-wc-invoice-gateway.php:107
-msgid "Pending Payment"
-msgstr ""
-
-#: classes/class-wc-invoice-gateway.php:108
-msgid "On Hold"
-msgstr ""
-
 #: classes/class-wc-invoice-gateway.php:109
-msgid "Processing"
-msgstr ""
-
-#: classes/class-wc-invoice-gateway.php:110
-msgid "Completed"
-msgstr ""
-
-#: classes/class-wc-invoice-gateway.php:114
 msgid "Select order status"
 msgstr ""
 
-#: classes/class-wc-invoice-gateway.php:118
+#: classes/class-wc-invoice-gateway.php:113
 msgid "Enable for shipping methods"
 msgstr ""
 
-#: classes/class-wc-invoice-gateway.php:123
+#: classes/class-wc-invoice-gateway.php:118
 msgid ""
 "If Invoice is only available for certain methods, set it up here. Leave "
 "blank to enable for all methods."
 msgstr ""
 
-#: classes/class-wc-invoice-gateway.php:127
+#: classes/class-wc-invoice-gateway.php:122
 msgid "Select shipping methods"
 msgstr ""
 
-#: classes/class-wc-invoice-gateway.php:131
+#: classes/class-wc-invoice-gateway.php:126
 msgid "Accept for virtual orders"
 msgstr ""
 
-#: classes/class-wc-invoice-gateway.php:132
+#: classes/class-wc-invoice-gateway.php:127
 msgid "Accept Invoice if the order is virtual"
 msgstr ""
 
-#: classes/class-wc-invoice-gateway.php:207
+#: classes/class-wc-invoice-gateway.php:226
 msgid "Awaiting invoice payment"
 msgstr ""
 
