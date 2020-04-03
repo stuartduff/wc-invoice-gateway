@@ -42,9 +42,6 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
     // Customer Emails
     add_action('woocommerce_email_before_order_table', array( $this, 'email_instructions'), 10, 3);
 
-    // Order table actions
-    add_action( 'init', array( $this, 'remove_order_actions_buttons' ) );
-
     // Remove order actions for pending payment status.
     add_filter( 'woocommerce_my_account_my_orders_actions', array( $this, 'remove_order_actions_buttons' ), 10, 2 );
 
