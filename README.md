@@ -24,6 +24,9 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 
 ## Changelog
 
+**1.0.4 - 03/04/20**
+* Fix - Remove Pay, Cancel order action buttons on My Account > Orders if order status is Pending Payment.
+
 **1.0.3 - 25/02/20**
 * Add - Functionality to return custom WooCommerce order statuses.
 
