@@ -6,8 +6,8 @@
  * Version:           1.0.3
  * Author:            Stuart Duff
  * Author URI:        http://stuartduff.com
- * Requires at least: 5.3
- * Tested up to:      5.3
+ * Requires at least: 5.4
+ * Tested up to:      5.4
  * Text Domain: wc-invoice-gateway
  * Domain Path: /languages/
  * WC requires at least: 3.9
