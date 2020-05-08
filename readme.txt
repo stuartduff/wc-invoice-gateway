@@ -1,9 +1,9 @@
 === WooCommerce Invoice Gateway ===
 Contributors: stuartduff
 Tags: ecommerce, e-commerce, store, sales, sell, shop, cart, checkout, woocommerce, payments
-Requires at least: 5.3
+Requires at least: 5.4
 Tested up to: 5.4
-Stable tag: 1.0.4
+Stable tag: 1.0.5
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -37,6 +37,9 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 1. The WooCommerce Invoice Gateway settings panel.
 
 == Changelog ==
+
+= 1.0.5 - 08/05/20 =
+* Added - The functionality to enable the order actions buttons using the remove_wc_invoice_gateway_order_actions_buttons filter.
 
 = 1.0.4 - 03/04/20 =
 * Fix - Remove Pay, Cancel order action buttons on My Account > Orders if order status is Pending Payment.

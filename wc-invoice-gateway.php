@@ -3,15 +3,15 @@
  * Plugin Name:       WooCommerce Invoice Gateway
  * Plugin URI:        https://wordpress.org/plugins/wc-invoice-gateway/
  * Description:       Adds Invoice payment gateway functionality to your WooCommerce store. This type of payment method is usually used in B2B transactions with account customers where taking instant digital payment is not an option.
- * Version:           1.0.4
+ * Version:           1.0.5
  * Author:            Stuart Duff
  * Author URI:        http://stuartduff.com
  * Requires at least: 5.4
  * Tested up to:      5.4
  * Text Domain: wc-invoice-gateway
  * Domain Path: /languages/
- * WC requires at least: 3.9
- * WC tested up to: 4.0
+ * WC requires at least: 4.0
+ * WC tested up to: 4.1
  *
  * @package WC_Invoice_Gateway
  */
@@ -80,6 +80,9 @@ final class WC_Invoice_Gateway {
     add_action( 'init', array( $this, 'load_plugin_textdomain' ) );
 
     add_action( 'init', array( $this, 'plugin_setup' ) );
+
+    // Remove order actions for pending payment status.
+    add_filter( 'woocommerce_my_account_my_orders_actions', array( $this, 'remove_wc_invoice_gateway_order_actions_buttons' ), 10, 2 );
 
   }
 
@@ -183,6 +186,22 @@ final class WC_Invoice_Gateway {
     );
 
     return array_merge( $action_links, $links );
+  }
+
+  /**
+   * Remove Pay, Cancel order action buttons on My Account > Orders if order status is Pending Payment.
+   * @since   1.0.4
+   * @return  $actions
+   */
+  public static function remove_wc_invoice_gateway_order_actions_buttons( $actions, $order ) {
+
+    if ( $order->has_status( 'pending' ) && 'invoice' === $order->get_payment_method() ) {
+      unset( $actions['pay'] );
+      unset( $actions['cancel'] );
+    }
+
+    return $actions;
+
   }
 
 } // End Class

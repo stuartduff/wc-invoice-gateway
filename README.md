@@ -24,6 +24,9 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 
 ## Changelog
 
+**1.0.5 - 08/05/20**
+* Added - The functionality to enable the order actions buttons using the remove_wc_invoice_gateway_order_actions_buttons filter. 
+
 **1.0.4 - 03/04/20**
 * Fix - Remove Pay, Cancel order action buttons on My Account > Orders if order status is Pending Payment.
 

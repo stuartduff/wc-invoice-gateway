@@ -42,9 +42,6 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
     // Customer Emails
     add_action('woocommerce_email_before_order_table', array( $this, 'email_instructions'), 10, 3);
 
-    // Remove order actions for pending payment status.
-    add_filter( 'woocommerce_my_account_my_orders_actions', array( $this, 'remove_order_actions_buttons' ), 10, 2 );
-
   }
 
   /**
@@ -266,22 +263,6 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
     if ( $this->instructions && ! $sent_to_admin && 'invoice' === $order->get_payment_method() && apply_filters( 'wc_invoice_gateway_process_payment_order_status', $this->order_status ) !== 'wc-' . $order->get_status() ) {
       echo wpautop( wptexturize( $this->instructions ) ) . PHP_EOL;
     }
-  }
-
-  /**
-   * Remove Pay, Cancel order action buttons on My Account > Orders if order status is Pending Payment.
-   * @since   1.0.4
-   * @return  $actions
-   */
-  public function remove_order_actions_buttons( $actions, $order ) {
-
-    if ( $order->has_status( 'pending' ) && 'invoice' === $order->get_payment_method() ) {
-      unset( $actions['pay'] );
-      unset( $actions['cancel'] );
-    }
-
-    return $actions;
-
   }
 
 }
