@@ -101,7 +101,7 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
       'desc_tip'    => true,
       ),
       'order_status' => array(
-        'title'             => __( 'Choose and order status', 'wc-invoice-gateway' ),
+        'title'             => __( 'Choose an order status', 'wc-invoice-gateway' ),
         'type'              => 'select',
         'class'             => 'wc-enhanced-select',
         'css'               => 'width: 450px;',
