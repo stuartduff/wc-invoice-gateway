@@ -3,15 +3,15 @@
  * Plugin Name:       WooCommerce Invoice Gateway
  * Plugin URI:        https://wordpress.org/plugins/wc-invoice-gateway/
  * Description:       Adds Invoice payment gateway functionality to your WooCommerce store. This type of payment method is usually used in B2B transactions with account customers where taking instant digital payment is not an option.
- * Version:           1.0.5
+ * Version:           1.0.6
  * Author:            Stuart Duff
  * Author URI:        http://stuartduff.com
  * Requires at least: 5.4
- * Tested up to:      5.4
+ * Tested up to:      5.5
  * Text Domain: wc-invoice-gateway
  * Domain Path: /languages/
  * WC requires at least: 4.0
- * WC tested up to: 4.1
+ * WC tested up to: 4.2
  *
  * @package WC_Invoice_Gateway
  */

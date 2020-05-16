@@ -32,12 +32,16 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
     $this->description        = $this->get_option( 'description' );
     $this->instructions       = $this->get_option( 'instructions' );
     $this->order_status       = $this->get_option( 'order_status' );
+    $this->user_roles         = $this->get_option( 'user_roles' );
     $this->enable_for_methods = $this->get_option( 'enable_for_methods', array() );
     $this->enable_for_virtual = $this->get_option( 'enable_for_virtual', 'yes' ) === 'yes' ? true : false;
 
     // Actions
     add_action( 'woocommerce_update_options_payment_gateways_' . $this->id, array( $this, 'process_admin_options' ) );
     add_action( 'woocommerce_thankyou_invoice', array( $this, 'thankyou_page' ) );
+
+    // Restrict payment gateway to user roles.
+    add_filter( 'woocommerce_available_payment_gateways', array( $this, 'wc_invoice_restrict_gatway_user_roles' ) );
 
     // Customer Emails
     add_action('woocommerce_email_before_order_table', array( $this, 'email_instructions'), 10, 3);
@@ -109,6 +113,19 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
           'data-placeholder'  => __( 'Select order status', 'wc-invoice-gateway' )
         )
       ),
+      'user_roles' => array(
+        'title'             => __( 'Restrict to specific user roles', 'wc-invoice-gateway' ),
+        'type'              => 'multiselect',
+        'class'             => 'wc-enhanced-select',
+        'css'               => 'width: 450px;',
+        'default'           => '',
+        'description'       => __( 'Choose specific user roles the gateway will display for. If no user roles are chosen the gateway will display for all users', 'wc-invoice-gateway' ),
+        'options'           => $this->get_available_user_roles(),
+        'desc_tip'          => true,
+        'custom_attributes' => array(
+          'data-placeholder'  => __( 'Select user roles', 'wc-invoice-gateway' )
+        )
+      ),
       'enable_for_methods' => array(
         'title'             => __( 'Enable for shipping methods', 'wc-invoice-gateway' ),
         'type'              => 'multiselect',
@@ -148,11 +165,43 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
     $returned_statuses = array_combine( $keys, $order_statuses );
 
     // Remove the statuses of cancelled, refunded and failed from returning.
-    unset( $returned_statuses ['cancelled'] );
-    unset( $returned_statuses ['refunded'] );
-    unset( $returned_statuses ['failed'] );
+    unset( $returned_statuses['cancelled'] );
+    unset( $returned_statuses['refunded'] );
+    unset( $returned_statuses['failed'] );
 
     return $returned_statuses;
+
+  }
+
+  /**
+   * Get all user roles available within WordPress
+   * @access  protected
+   * @since   1.0.6
+   * @return array
+   */
+  protected function get_available_user_roles() {
+    global $wp_roles;
+
+  	$roles = $wp_roles->get_names();
+
+    return $roles;
+  }
+
+  /**
+   * Restrict invoice gateway access selected user roles
+   * @access  public
+   * @since   1.0.6
+   */
+  public function wc_invoice_restrict_gatway_user_roles( $available_gateways ) {
+
+    $user = wp_get_current_user();
+    $enabled_roles = $this->user_roles;
+
+    if ( ! empty( $enabled_roles ) && array_diff( $enabled_roles, (array) $user->roles ) === $enabled_roles ) {
+      unset( $available_gateways['invoice'] );
+    }
+
+    return $available_gateways;
 
   }
 

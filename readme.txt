@@ -2,8 +2,8 @@
 Contributors: stuartduff
 Tags: ecommerce, e-commerce, store, sales, sell, shop, cart, checkout, woocommerce, payments
 Requires at least: 5.4
-Tested up to: 5.4
-Stable tag: 1.0.5
+Tested up to: 5.5
+Stable tag: 1.0.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -38,21 +38,25 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 
 == Changelog ==
 
+= 1.0.5 - 16/05/20 =
+* Added - The functionality to restrict gateway access to specific users roles.
+* Fix - Typo of "Choose and order status" to "Choose an order status".
+
 = 1.0.5 - 08/05/20 =
-* Added - The functionality to enable the order actions buttons using the remove_wc_invoice_gateway_order_actions_buttons filter.
+* Added - The functionality to enable the order actions buttons using the `remove_wc_invoice_gateway_order_actions_buttons` filter.
 
 = 1.0.4 - 03/04/20 =
 * Fix - Remove Pay, Cancel order action buttons on My Account > Orders if order status is Pending Payment.
 
 = 1.0.3 - 25/02/20 =
-* Add - Functionality to return custom WooCommerce order statuses.
+* Added - Functionality to return custom WooCommerce order statuses.
 
 = 1.0.2 - 04/11/17 =
 * Fix - Enable for shipping methods dropdown.
-* WooCommerce v3.2+ compatibility.
+* Added - WooCommerce v3.2+ compatibility.
 
 = 1.0.1 - 27/10/17 =
-* Added WooCommerce plugin version check compatibility.
+* Added - WooCommerce plugin version check compatibility.
 
 = 1.0.0 - 20/07/16 =
 * Initial Release - first version of the plugin released.
