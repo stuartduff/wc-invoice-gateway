@@ -8,7 +8,7 @@ You can also choose to restrict the gateway to only be enabled for specific Word
 The plugin itself does not create customer invoices for you only orders. For invoices this is something you would still have to use an accounting program like Quickbooks or similar to bill your customers with.
 
 
-![woocommerce-invoice-gateway-settings](https://cloud.githubusercontent.com/assets/1190565/18257488/6d4c8a08-73bc-11e6-82ec-27914d991d82.png)
+![woocommerce-invoice-gateway-settings](https://user-images.githubusercontent.com/1190565/82124911-351be600-979a-11ea-893d-185e0d398a9d.png)
 
 ## Installation
 
