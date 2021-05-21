@@ -7,11 +7,11 @@
  * Author:            Stuart Duff
  * Author URI:        http://stuartduff.com
  * Requires at least: 5.4
- * Tested up to:      5.5
+ * Tested up to:      5.8
  * Text Domain: wc-invoice-gateway
  * Domain Path: /languages/
- * WC requires at least: 4.0
- * WC tested up to: 4.2
+ * WC requires at least: 5.0
+ * WC tested up to: 5.4
  *
  * @package WC_Invoice_Gateway
  */
