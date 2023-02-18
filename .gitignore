@@ -1,0 +1,14 @@
+# OS X metadata
+.DS_Store
+
+# Windows junk
+Thumbs.db
+
+# Translation
+.pot~
+
+# Node
+node_modules
+
+# PHPCS
+phpcs.xml
