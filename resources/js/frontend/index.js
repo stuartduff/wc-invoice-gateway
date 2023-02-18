@@ -5,7 +5,7 @@ import { getSetting } from '@woocommerce/settings';
 import { decodeEntities } from '@wordpress/html-entities';
 
 const settings = getSetting( 'invoice_data', {} );
-const defaultLabel = __( 'Invoice Payments', 'wc-invoice-gateway' );
+const defaultLabel = __( 'Invoice Payment', 'wc-invoice-gateway' );
 const label = decodeEntities( settings.title ) || defaultLabel;
 
 /**
