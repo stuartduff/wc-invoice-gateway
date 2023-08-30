@@ -19,7 +19,7 @@ You can also choose to restrict the gateway to only be enabled for specific Word
 
 The plugin itself does not create customer invoices for you only orders. For invoices this is something you would still have to use an accounting program like Quickbooks or similar to bill your customers with.
 
-Supports the WooCommerce block based checkout.
+Supports the WooCommerce block based checkout and HPOS.
 
 
 == Installation ==
