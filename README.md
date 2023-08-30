@@ -28,6 +28,9 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 
 ## Changelog
 
+**2.0.1 - 30/08/23**
+* Added - HPOS compatibility.
+
 **2.0.0 - 18/02/23**
 * Added - Compatibility for the WooCommerce block checkout.
 

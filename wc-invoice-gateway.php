@@ -3,7 +3,7 @@
  * Plugin Name: WooCommerce Invoice Gateway
  * Plugin URI: https://wordpress.org/plugins/wc-invoice-gateway/
  * Description: Adds Invoice payment gateway functionality to your WooCommerce store. This type of payment method is usually used in B2B transactions with account customers where taking instant digital payment is not an option.
- * Version: 2.0.0
+ * Version: 2.0.1
  *
  * Author: Stuart Duff
  * Author URI: http://stuartduff.com
@@ -12,10 +12,10 @@
  * Domain Path: /languages/
  *
  * Requires at least: 6.1
- * Tested up to: 6.2
+ * Tested up to: 6.3
  * 
- * WC requires at least: 7.2
- * WC tested up to: 7.4
+ * WC requires at least: 8.0
+ * WC tested up to: 8.1
  *
  * Copyright: © 2009-2017 Emmanouil Psychogyiopoulos.
  * License: GNU General Public License v3.0
@@ -56,6 +56,9 @@ class WC_Invoice_Gateway {
 
 		// Remove order actions for pending payment status.
     add_filter( 'woocommerce_my_account_my_orders_actions', array( __CLASS__, 'remove_wc_invoice_gateway_order_actions_buttons' ), 10, 2 );
+
+		// Declare HPOS compaibility.
+		add_action( 'before_woocommerce_init', array( __CLASS__, 'wc_declare_hpos_compatibility' ) );
 
 	}
 
@@ -180,6 +183,17 @@ class WC_Invoice_Gateway {
     return $actions;
 
   }
+
+	/**
+	 * Declare HPOS compatibility.
+	 * @since   2.0.1
+	 * @return  void
+	 */
+	public static function wc_declare_hpos_compatibility() {
+		if ( class_exists( \Automattic\WooCommerce\Utilities\FeaturesUtil::class ) ) {
+			\Automattic\WooCommerce\Utilities\FeaturesUtil::declare_compatibility( 'custom_order_tables', __FILE__, true );
+		}
+	}
 
 }
 

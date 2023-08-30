@@ -2,7 +2,7 @@
 Contributors: stuartduff
 Tags: ecommerce, e-commerce, store, sales, sell, shop, cart, checkout, woocommerce, payments
 Requires at least: 6.0
-Tested up to: 6.2
+Tested up to: 6.3
 Stable tag: 2.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
@@ -42,6 +42,9 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 1. The WooCommerce Invoice Gateway settings panel.
 
 == Changelog ==
+
+= 2.0.1 - 30/08/23 =
+* Added - HPOS Compatibility.
 
 = 2.0.0 - 18/02/23 =
 * Added - Compatibility for the WooCommerce block checkout.
