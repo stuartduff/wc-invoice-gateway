@@ -12,10 +12,10 @@
  * Domain Path: /languages/
  *
  * Requires at least: 6.1
- * Tested up to: 6.3
+ * Tested up to: 6.5
  * 
  * WC requires at least: 8.0
- * WC tested up to: 8.1
+ * WC tested up to: 8.3
  *
  * Copyright: © 2009-2017 Emmanouil Psychogyiopoulos.
  * License: GNU General Public License v3.0

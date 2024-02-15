@@ -2,7 +2,7 @@
 Contributors: stuartduff
 Tags: ecommerce, e-commerce, store, sales, sell, shop, cart, checkout, woocommerce, payments
 Requires at least: 6.0
-Tested up to: 6.3
+Tested up to: 6.5
 Stable tag: 2.0.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
