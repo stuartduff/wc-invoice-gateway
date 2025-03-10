@@ -3,7 +3,7 @@
  * WC_Invoice_Gateway class
  *
  * @author   Stuart Duff
- * @package  WooCommerce Invoice Gateway
+ * @package  Invoice Payment Gateway for WooCommerce
  * @since    1.0.0
  */
 
@@ -22,6 +22,22 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 class WC_Gateway_Invoice extends WC_Payment_Gateway {
 
+  /**
+   * The ttitle.
+   * @var     string
+   * @access  public
+   * @since   2.0.2
+   */
+    public $title;
+
+
+    public $description;
+    public $instructions;
+    public $order_status;
+    public $user_roles;
+    public $enable_for_methods;
+    public $enable_for_virtual;
+
 	/**
 	 * Constructor for the gateway.
 	 */
@@ -35,9 +51,9 @@ class WC_Gateway_Invoice extends WC_Payment_Gateway {
 		$this->init_settings();
 
 		// Define settings.
-		$this->title       		  = $this->get_option( 'title' );
+		$this->title       		  	= $this->get_option( 'title' );
 		$this->description        = $this->get_option( 'description' );
-		$this->instructions 	  = $this->get_option( 'instructions', $this->description );
+		$this->instructions 	  	= $this->get_option( 'instructions', $this->description );
 		$this->order_status       = $this->get_option( 'order_status' );
 		$this->user_roles         = $this->get_option( 'user_roles' );
 		$this->enable_for_methods = $this->get_option( 'enable_for_methods', array() );

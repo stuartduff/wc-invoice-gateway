@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: WooCommerce Invoice Gateway
+ * Plugin Name: Invoice Payment Gateway for WooCommerce
  * Plugin URI: https://wordpress.org/plugins/wc-invoice-gateway/
  * Description: Adds Invoice payment gateway functionality to your WooCommerce store. This type of payment method is usually used in B2B transactions with account customers where taking instant digital payment is not an option.
- * Version: 2.0.1
+ * Version: 2.0.2
  *
  * Author: Stuart Duff
  * Author URI: http://stuartduff.com
@@ -11,11 +11,11 @@
  * Text Domain: wc-invoice-gateway
  * Domain Path: /languages/
  *
- * Requires at least: 6.1
- * Tested up to: 6.5
+ * Requires at least: 6.7
+ * Tested up to: 6.8
  * 
- * WC requires at least: 8.0
- * WC tested up to: 8.3
+ * WC requires at least: 9.7
+ * WC tested up to: 9.8
  *
  * Copyright: © 2009-2017 Emmanouil Psychogyiopoulos.
  * License: GNU General Public License v3.0
@@ -157,14 +157,14 @@ class WC_Invoice_Gateway {
   }
 
   /**
-   * WooCommerce Invoice Gateway plugin install notice.
+   * Invoice Payment Gateway for WooCommerce plugin install notice.
    * If the user activates this plugin while not having the WooCommerce Dynamic Pricing plugin installed or activated, prompt them to install WooCommerce Dynamic Pricing.
    * @since   1.0.0
    * @return  void
    */
   public static function install_woocommerce_core_notice() {
     echo '<div class="notice notice-error is-dismissible">
-      <p>' . __( 'The WooCommerce Invoice Gateway extension requires that you have the WooCommerce core plugin installed and activated.', 'wc-invoice-gateway' ) . ' <a href="https://wordpress.org/plugins/woocommerce/" target="_blank">' . __( 'Install WooCommerce', 'wc-invoice-gateway' ) . '</a></p>
+      <p>' . __( 'The Invoice Payment Gateway for WooCommerce extension requires that you have the WooCommerce core plugin installed and activated.', 'wc-invoice-gateway' ) . ' <a href="https://wordpress.org/plugins/woocommerce/" target="_blank">' . __( 'Install WooCommerce', 'wc-invoice-gateway' ) . '</a></p>
     </div>';
   }
 

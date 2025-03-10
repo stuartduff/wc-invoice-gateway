@@ -1,13 +1,13 @@
-=== WooCommerce Invoice Gateway ===
+=== Invoice Payment Gateway for WooCommerce ===
 Contributors: stuartduff
-Tags: ecommerce, e-commerce, store, sales, sell, shop, cart, checkout, woocommerce, payments
-Requires at least: 6.0
-Tested up to: 6.5
-Stable tag: 2.0.1
+Tags: e-commerce, store, shop, woocommerce, payments
+Requires at least: 6.7
+Tested up to: 6.8
+Stable tag: 2.0.2
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-The WooCommerce Invoice Payment Gateway plugin adds an Invoice Payment Gateway feature to the WooCommerce plugin for B2B transactions when instant payments are not viable.
+The Invoice Payment Gateway for WooCommerce plugin adds an Invoice Payment Gateway feature to the WooCommerce plugin for B2B transactions when instant payments are not viable.
 
 == Description ==
 
@@ -24,7 +24,7 @@ Supports the WooCommerce block based checkout and HPOS.
 
 == Installation ==
 
-1. Download the plugin from the WordPress plugin directory.
+1. Download the Invoice Payment Gateway for WooCommerce plugin from the WordPress plugin directory.
 2. Goto WordPress > Appearance > Plugins > Add New.
 3. Click Upload Plugin and Choose File, then select the plugin's .zip file. Click Install Now.
 4. Click Activate to use your new plugin right away.
@@ -39,9 +39,13 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 
 == Screenshots ==
 
-1. The WooCommerce Invoice Gateway settings panel.
+1. The Invoice Payment Gateway for WooCommerce settings panel.
 
 == Changelog ==
+
+= 2.0.2 - 10/03/25 =
+* Fix - For deprecated PHP notices
+* Added - Name chage from WooCommerce Invoice Gateway to Invoice Payment Gateway for WooCommerce
 
 = 2.0.1 - 30/08/23 =
 * Added - HPOS Compatibility.

@@ -1,7 +1,7 @@
-# WooCommerce Invoice Payment Gateway
+# Invoice Payment Gateway for WooCommerce
 Adds an Invoice Payment Gateway to the [WooCommerce](https://www.woocommerce.com/) plugin. This type of payment method is usually used in B2B transactions with account / invoice customers where taking instant digital payment is not an option.
 
-Default and custom WooCommerce order statuses of like On Hold, Pending Payment, Processing or Completed etc can be chosen from the gateway settings panel. The selected order status will be applied to all orders processed via the WooCommerce invoice payment gateway and the corresponding status order emails will be sent after checkout.
+Default and custom WooCommerce order statuses of like On Hold, Pending Payment, Processing or Completed etc can be chosen from the gateway settings panel. The selected order status will be applied to all orders processed via the Invoice Payment Gateway for WooCommerce plugin and the corresponding status order emails will be sent after checkout.
 
 You can also choose to restrict the gateway to only be enabled for specific WordPress users roles.
 
@@ -14,7 +14,7 @@ Supports the WooCommerce block based checkout.
 
 ## Installation
 
-1. Download the plugin from WordPress.org [WooCommerce Invoice Payment Gateway](https://wordpress.org/plugins/wc-invoice-gateway/).
+1. Download the plugin from WordPress.org [Invoice Payment Gateway for WooCommerce](https://wordpress.org/plugins/wc-invoice-gateway/).
 2. Goto WordPress > Appearance > Plugins > Add New.
 3. Click Upload Plugin and Choose File, then select the plugin's .zip file. Click Install Now.
 4. Click Activate to use your new plugin right away.
@@ -27,6 +27,10 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 * [WooCommerce](https://www.woocommerce.com/)
 
 ## Changelog
+
+**2.0.2 - 10/03/25**
+* Fix - For deprecated PHP notices
+* Added - Name chage from WooCommerce Invoice Gateway to Invoice Payment Gateway for WooCommerce
 
 **2.0.1 - 30/08/23**
 * Added - HPOS compatibility.
