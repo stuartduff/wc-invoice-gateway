@@ -1,0 +1,57 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build plugin zip
+        id: zip
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          ZIP_NAME="wc-invoice-gateway-${VERSION}.zip"
+
+          # git archive respects .gitattributes export-ignore rules.
+          git archive --format=zip --prefix=wc-invoice-gateway/ -o "${ZIP_NAME}" HEAD
+
+          echo "zip_name=${ZIP_NAME}" >> "$GITHUB_OUTPUT"
+          echo "Built ${ZIP_NAME}"
+          unzip -l "${ZIP_NAME}"
+
+      - name: Extract release notes from readme.txt
+        id: notes
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          NOTES_FILE="${RUNNER_TEMP}/release-notes.md"
+
+          # Pull the changelog section for this version from readme.txt.
+          awk -v ver="${VERSION}" '
+            $0 ~ ("^= " ver " ") {capture=1; next}
+            capture && /^= / {exit}
+            capture {print}
+          ' readme.txt > "${NOTES_FILE}"
+
+          if [ ! -s "${NOTES_FILE}" ]; then
+            echo "Release ${VERSION}" > "${NOTES_FILE}"
+          fi
+
+          echo "notes_file=${NOTES_FILE}" >> "$GITHUB_OUTPUT"
+          echo "Release notes:"
+          cat "${NOTES_FILE}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.zip.outputs.zip_name }}
+          body_path: ${{ steps.notes.outputs.notes_file }}
+          fail_on_unmatched_files: true

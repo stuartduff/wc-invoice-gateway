@@ -1,0 +1,11 @@
+# Exclude development files from git archive / release zips.
+/.gitattributes export-ignore
+/.github export-ignore
+/.gitignore export-ignore
+/bin export-ignore
+/resources export-ignore
+/README.md export-ignore
+/package.json export-ignore
+/package-lock.json export-ignore
+/phpcs.xml export-ignore
+/webpack.config.js export-ignore
