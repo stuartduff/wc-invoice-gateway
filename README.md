@@ -12,6 +12,10 @@ Supports the WooCommerce block based checkout.
 
 ![woocommerce-invoice-gateway-settings](https://user-images.githubusercontent.com/1190565/82124911-351be600-979a-11ea-893d-185e0d398a9d.png)
 
+## Development
+
+For pushing to GitHub and tagging a release (including the automated clean plugin zip), see [docs/releasing.md](docs/releasing.md).
+
 ## Installation
 
 1. Download the plugin from WordPress.org [Invoice Payment Gateway for WooCommerce](https://wordpress.org/plugins/wc-invoice-gateway/).
