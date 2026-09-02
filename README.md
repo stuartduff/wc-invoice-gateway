@@ -28,6 +28,9 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 
 ## Changelog
 
+**2.0.3 - 20/05/26**
+* Fix - Corrected inverted status check in email_instructions causing payment instructions to appear in processing emails instead of only on-hold emails.
+
 **2.0.2 - 10/03/25**
 * Fix - For deprecated PHP notices
 * Added - Name chage from WooCommerce Invoice Gateway to Invoice Payment Gateway for WooCommerce

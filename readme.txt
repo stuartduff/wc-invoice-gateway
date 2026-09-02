@@ -1,13 +1,13 @@
 === Invoice Payment Gateway for WooCommerce ===
 Contributors: stuartduff
 Tags: e-commerce, store, shop, woocommerce, payments
-Requires at least: 6.7
-Tested up to: 6.8
-Stable tag: 2.0.2
+Requires at least: 6.9
+Tested up to: 7.0
+Stable tag: 2.0.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-The Invoice Payment Gateway for WooCommerce plugin adds an Invoice Payment Gateway feature to the WooCommerce plugin for B2B transactions when instant payments are not viable.
+Invoice Payment Gateway for WooCommerce for B2B transactions where instant digital payment is not an option.
 
 == Description ==
 
@@ -42,6 +42,9 @@ For this extension to function [WooCommerce](https://www.woocommerce.com/) must 
 1. The Invoice Payment Gateway for WooCommerce settings panel.
 
 == Changelog ==
+
+= 2.0.3 - 20/05/26 =
+* Fix - Corrected inverted status check in email_instructions causing payment instructions to appear in processing emails instead of only on-hold emails.
 
 = 2.0.2 - 10/03/25 =
 * Fix - For deprecated PHP notices
